@@ -1,19 +1,6 @@
-#include <windows.h>
+#include "pxfind.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct {
-    int x;
-    int y;
-    int width;
-    int height;
-} FieldOfView;
-
-typedef struct {
-    int x;
-    int y;
-    int found;  // Use 0 for false, 1 for true
-} PixelSearchResult;
 
 // Function to get screen dimensions
 void GetScreenDimensions(int *width, int *height) {
