@@ -21,6 +21,16 @@ void GetScreenDimensions(int *width, int *height) {
     *height = GetSystemMetrics(SM_CYSCREEN);
 }
 
+// Function to calculate the FOV centered on the screen
+FieldOfView CalculateFOV(int screenWidth, int screenHeight, int fovWidth, int fovHeight) {
+    FieldOfView fov;
+    fov.x = (screenWidth - fovWidth) / 2;
+    fov.y = (screenHeight - fovHeight) / 2;
+    fov.width = fovWidth;
+    fov.height = fovHeight;
+    return fov;
+}
+
 // Search for a pixel with the specified color within the given area
 PixelSearchResult PixelSearch(FieldOfView fov, COLORREF color, int variation) {
     HDC hdc = GetDC(NULL);
@@ -54,7 +64,7 @@ int main() {
 
     int fovWidth = 800;
     int fovHeight = 600;
-    FieldOfView fov = { (screenWidth - fovWidth) / 2, (screenHeight - fovHeight) / 2, fovWidth, fovHeight };
+    FieldOfView fov = CalculateFOV(screenWidth, screenHeight, fovWidth, fovHeight);
 
     COLORREF targetColor = 0x00FF00;  // Green in COLORREF format
     int colorVariation = 10;
